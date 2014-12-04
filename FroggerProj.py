@@ -1,12 +1,11 @@
 from Tkinter import *
 root = Tk()
 drawpad = Canvas(root, width=800,height=600, background='blue')
-player = drawpad.create_oval(390,580,410,600, fill="blue")
 Grass = drawpad.create_rectangle(0,350,800,600, fill="green")
 Road = drawpad.create_rectangle(0,425,800,525, fill="grey")
 car1 = drawpad.create_rectangle(350,465,400,490, fill="red")
 car2 = drawpad.create_rectangle(350,435,400,460, fill="red")
-
+player = drawpad.create_oval(390,580,410,600, fill="Purple")
 
 
 direction = 3
@@ -53,13 +52,13 @@ class myApp(object):
         global drawpad
         global player
         if event.char == "w":
-            drawpad.move(player,0,-3)
+            drawpad.move(player,0,-35)
         if event.char == "s":
-            drawpad.move(player,0,3)
+            drawpad.move(player,0,35)
         if event.char == "d":
-                drawpad.move(player,3,0)
+                drawpad.move(player,35,0)
         if event.char == "a":
-            drawpad.move(player,-3,0)
+            drawpad.move(player,-35,0)
 
             
     
