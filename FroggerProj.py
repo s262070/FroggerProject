@@ -1,12 +1,12 @@
 from Tkinter import *
 root = Tk()
 drawpad = Canvas(root, width=800,height=600, background='blue')
-Grass = drawpad.create_rectangle(0,350,800,600, fill="green")
+Grass = drawpad.create_rectangle(0,250,800,600, fill="green")
 Road = drawpad.create_rectangle(0,425,800,525, fill="grey")
 car1 = drawpad.create_rectangle(350,465,400,490, fill="red")
 car2 = drawpad.create_rectangle(350,435,400,460, fill="red")
 player = drawpad.create_oval(390,580,410,600, fill="Purple")
-
+bug = drawpad.create_rectangle(350,300,400,330, fill="brown")
 
 direction = 3
 direction = -3
@@ -45,6 +45,12 @@ class myApp(object):
         elif x1 < 0:
             fast = 3
         drawpad.move(car2, fast, 0)
+        x1,y1,x2,y2 = drawpad.coords(bug)
+        if x2 > 800:
+            fast = - 3
+        elif x1 < 0:
+            fast = 3
+        drawpad.move(bug, fast, 0)
  
             
 
@@ -63,7 +69,7 @@ class myApp(object):
             
     
     def collisionDetect(self, player):
-        rx1,ry1,rx2,ry2 = drawpad.coords(player)
+        px1,py1,px2,py2 = drawpad.coords(player)
             
 app = myApp(root)
 root.mainloop()
