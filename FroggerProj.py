@@ -24,6 +24,24 @@ class myApp(object):
         drawpad.pack()
         root.bind_all('<Key>', self.key)
         self.animate()
+
+
+
+
+
+
+    def collisionDetect(self, player):
+        global car1
+        global car2
+        global bug
+        px1,py1,px2,py2 = drawpad.coords(player)
+        c1x1,c1y1,c1x2,c1y2 = drawpad.coords(car1)
+        c2x1,c2y1,c2x2,c2y2 = drawpad.coords(car2)
+        bx1,by1,bx2,by2 = drawpad.coords(bug)
+
+        if (px1 > c1x1 and px2 < c1x2)and(py1 < c1y1 and py2 > c1y2):
+            print hit
+
     
     def animate(self):
         global drawpad
@@ -51,25 +69,42 @@ class myApp(object):
         elif x1 < 0:
             fast = 3
         drawpad.move(bug, fast, 0)
- 
+        collisionDetect
             
 
     def key(self,event):
         global drawpad
         global player
+        x1,y1,x2,y2 = drawpad.coords(player)
         if event.char == "w":
-            drawpad.move(player,0,-35)
+            if y1 <= 0:
+                drawpad.move(player,0,20)
+            else: 
+                drawpad.move(player,0,-20)
         if event.char == "s":
-            drawpad.move(player,0,35)
+            if y2 >= 600:
+                drawpad.move(player,0,0)
+            else: 
+                drawpad.move(player,0,20)
         if event.char == "d":
-                drawpad.move(player,35,0)
+            if x2 >= 800:
+                drawpad.move(player,0,0)
+            else: 
+                drawpad.move(player,20,0)
         if event.char == "a":
-            drawpad.move(player,-35,0)
+            if x1 <= 0:
+                drawpad.move(player,0,0)
+            else: 
+                drawpad.move(player,-20,0)
+                
 
             
     
-    def collisionDetect(self, player):
-        px1,py1,px2,py2 = drawpad.coords(player)
+
+
+
+
+
             
 app = myApp(root)
 root.mainloop()
